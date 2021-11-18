@@ -1,0 +1,27 @@
+@import "./variables.scss";
+
+.root {
+  background-color: $peach;
+  text-align: center;
+  width: 85vw;
+  margin: auto;
+  margin-top: -5.3rem;
+  padding: 4rem 1rem;
+  border-radius: 8px;
+  height: 25.1rem;
+  position: relative;
+  top: 12.3rem;
+  h1 {
+    @include heading-1_mobile;
+    color: $white;
+    margin-top: 0;
+  }
+  p {
+    @include body;
+    color: $white;
+  }
+  button {
+    @include button-on-dark;
+    margin-top: 2rem;
+  }
+}

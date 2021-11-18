@@ -1,0 +1,58 @@
+@import "./variables.scss";
+
+.root {
+  @include list-reset;
+  margin: 7rem 0;
+}
+
+.content {
+  border-radius: 8px;
+  width: 85vw;
+  height: calc(0.7645 * 85vw);
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  h2 {
+    @include heading-2_mobile;
+    color: $white;
+    margin-top: 0;
+  }
+  h3 {
+    @include heading-3_mobile;
+    color: $white;
+    margin: 0;
+    .icon {
+      color: $peach;
+    }
+  }
+  &_web {
+    background-image: $gradient_1,
+      url("../public/assets/home/mobile/image-web-design.jpg");
+    &:hover {
+      background-image: $gradient_2,
+        url("../public/assets/home/mobile/image-web-design.jpg");
+    }
+  }
+  &_app {
+    background-image: $gradient_1,
+      url("../public/assets/home/mobile/image-app-design.jpg");
+    margin: 1.5rem auto;
+    &:hover {
+      background-image: $gradient_2,
+        url("../public/assets/home/mobile/image-app-design.jpg");
+    }
+  }
+  &_graphic {
+    background-image: $gradient_1,
+      url("../public/assets/home/mobile/image-graphic-design.jpg");
+    &:hover {
+      background-image: $gradient_2,
+        url("../public/assets/home/mobile/image-graphic-design.jpg");
+    }
+  }
+}

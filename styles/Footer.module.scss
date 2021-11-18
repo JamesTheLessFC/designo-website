@@ -1,0 +1,49 @@
+@import "./variables.scss";
+
+.root {
+  background-color: $black;
+  padding: 16rem 1.5rem 4rem 1.5rem;
+  text-align: center;
+  hr {
+    opacity: 0.5;
+    margin: 2rem 0;
+  }
+  ul {
+    @include list-reset;
+    margin-bottom: 2rem;
+    li {
+      margin: 1rem;
+      a {
+        @include heading-3;
+        color: $white;
+        &:hover {
+          color: $peach;
+        }
+      }
+    }
+  }
+  p {
+    @include body;
+    color: $white;
+    margin: initial;
+    a:hover {
+      color: $peach;
+      opacity: 1;
+    }
+  }
+}
+
+.icon {
+  color: $peach;
+  margin: 0 0.5rem;
+  font-size: 2rem;
+  &:hover {
+    color: $light-peach;
+  }
+}
+
+.contact,
+.address {
+  margin: 2rem 0;
+  opacity: 0.5;
+}

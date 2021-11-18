@@ -1,0 +1,184 @@
+$peach: hsl(11, 73%, 66%);
+$light-peach: hsl(11, 100%, 80%);
+$black: hsl(270, 3%, 11%);
+$black-transparent: hsla(270, 3%, 11%, 0.5);
+$dark-gray: hsl(264, 5%, 20%);
+$white: hsl(0, 0%, 100%);
+$white-transparent: hsla(0, 0%, 100%, 0.5);
+$light-gray: hsl(210, 17%, 95%);
+$gradient_1: linear-gradient(hsla(270, 3%, 11%, 0.5), hsla(270, 3%, 11%, 0.5));
+$gradient_2: linear-gradient(hsla(11, 73%, 66%, 0.5), hsla(11, 73%, 66%, 0.5));
+
+@mixin shadow-bottom-1 {
+  box-shadow: 0px 5px 5px hsla(270, 3%, 11%, 0.5);
+}
+
+@mixin heading-1 {
+  font-family: Jost;
+  font-weight: 500;
+  font-size: 3rem;
+  line-height: 3rem;
+  color: $black;
+}
+
+@mixin heading-2 {
+  font-family: Jost;
+  font-weight: 500;
+  font-size: 2.5rem;
+  line-height: 3rem;
+  letter-spacing: 0.125rem;
+  color: $black;
+}
+
+@mixin heading-3 {
+  font-family: Jost;
+  font-weight: 500;
+  font-size: 1.25rem;
+  line-height: 1.625rem;
+  letter-spacing: 0.3125rem;
+  text-transform: uppercase;
+  color: $dark-gray;
+}
+
+@mixin heading-1_mobile {
+  font-family: Jost;
+  font-weight: 500;
+  font-size: 2rem;
+  line-height: 2.25rem;
+  text-align: center;
+  color: $dark-gray;
+}
+
+@mixin heading-2_mobile {
+  font-family: Jost;
+  font-weight: 500;
+  font-size: 1.75rem;
+  line-height: 2.25rem;
+  text-align: center;
+  letter-spacing: 0.0875rem;
+  color: $dark-gray;
+  text-transform: uppercase;
+}
+
+@mixin heading-3_mobile {
+  font-family: Jost;
+  font-weight: 500;
+  font-size: 0.9375rem;
+  line-height: 1.375rem;
+  letter-spacing: 0.3125rem;
+  text-transform: uppercase;
+  color: $dark-gray;
+}
+
+@mixin body {
+  font-family: Jost;
+  font-weight: 400;
+  font-size: 1rem;
+  line-height: 1.625rem;
+  color: $dark-gray;
+}
+
+@mixin list-reset {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+@mixin button-reset {
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
+  border: none;
+  background-color: transparent;
+}
+
+@mixin button-default {
+  border-radius: 0.5rem;
+  font-family: Jost;
+  font-weight: 500;
+  font-size: 0.9375rem;
+  line-height: 1.375rem;
+  letter-spacing: 0.0625rem;
+  text-transform: uppercase;
+  padding: 1rem 1.5rem;
+  cursor: pointer;
+  border: none;
+}
+
+@mixin button-on-dark {
+  @include button-default;
+  background-color: $white;
+  color: $dark-gray;
+  &:hover {
+    color: $white;
+    background-color: $light-peach;
+  }
+}
+
+@mixin button-on-light {
+  @include button-default;
+  background-color: $peach;
+  color: $white;
+  &:hover {
+    background-color: $light-peach;
+  }
+}
+
+@mixin textfield {
+  position: relative;
+  input[type="text"] {
+    color: $white;
+    background-color: transparent;
+    width: 100%;
+    border: none;
+    padding: 0.75rem 0;
+    font-family: Jost;
+    font-weight: 500;
+    font-size: 0.9375rem;
+    outline: none;
+    border-bottom: 2px solid $white;
+    &::-webkit-input-placeholder {
+      color: $white-transparent;
+      border-width: 1px;
+    } /* WebKit, Blink and Opera */
+    &:-moz-placeholder {
+      color: $white-transparent;
+      border-width: 1px;
+    } /* Mozilla Firefox 4 to 18 */
+    &::-moz-placeholder {
+      color: $white-transparent;
+      border-width: 1px;
+    } /* Mozilla Firefox 19+ */
+    &:-ms-input-placeholder {
+      color: $white-transparent;
+      border-width: 1px;
+    } /* Internet Explorer 10-11 */
+    &::-ms-input-placeholder {
+      color: $white-transparent;
+      border-width: 1px;
+    } /* Edge */
+    &:placeholder-shown {
+      color: $white-transparent;
+      border-width: 1px;
+    } /* CSS Level 4 Selector */
+  }
+  p.error_message {
+    margin: 0;
+    position: absolute;
+    transform: translate(0%, -50%);
+    top: 50%;
+    right: 0;
+    font-family: Jost;
+    font-style: italic;
+    font-weight: 400;
+    font-size: 0.75rem;
+    line-height: 1.625rem;
+    color: $white;
+    display: flex;
+    align-items: center;
+    .icon {
+      margin-left: 0.5rem;
+      font-size: 1.25rem;
+    }
+  }
+}

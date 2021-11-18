@@ -1,0 +1,57 @@
+@import "./variables.scss";
+
+.root {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 10;
+  &_with_mobile_menu {
+    background-color: $black-transparent;
+    height: 100vh;
+  }
+}
+
+.bar {
+  @include shadow-bottom-1;
+  background-color: $white;
+  height: 5rem;
+  padding: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  button {
+    @include button-reset;
+  }
+}
+
+.mobile_menu {
+  @include list-reset;
+  @include shadow-bottom-1;
+  background-color: $black;
+  overflow: hidden;
+  transition: height 0.5s;
+  height: 206px;
+  li {
+    padding: 1rem;
+    a {
+      @include heading-3;
+      color: $white;
+      &:hover {
+        color: $peach;
+      }
+    }
+    &:first-child {
+      padding: 2rem 1rem 1rem 1rem;
+    }
+    &:last-child {
+      padding: 1rem 1rem 2rem 1rem;
+    }
+  }
+  &_hidden {
+    height: 0;
+  }
+}
+
+.icon {
+  font-size: 2rem;
+}
