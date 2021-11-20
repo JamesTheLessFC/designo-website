@@ -2,9 +2,9 @@
 
 .root {
   @include list-reset;
+  width: 85%;
+  margin: auto;
   li {
-    width: 85vw;
-    margin: auto;
     text-align: center;
     position: relative;
     h3 {
@@ -54,5 +54,60 @@
         );
       }
     }
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .root {
+    width: 90%;
+    li {
+      display: flex;
+      align-items: center;
+      text-align: left;
+      .text {
+        width: 65%;
+        margin-left: 2rem;
+        h3 {
+          margin-top: 0;
+        }
+      }
+      .circle {
+        top: 0;
+        left: 0;
+        transform: translate(0%, 0%);
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 992px) {
+  .root {
+    display: flex;
+    width: 90%;
+    margin: auto;
+    li {
+      display: block;
+      text-align: center;
+      &:nth-child(2) {
+        margin: 0 3rem;
+      }
+      .circle {
+        transform: translate(-50%, 0%);
+        left: 50%;
+      }
+      .text {
+        margin-left: unset;
+        width: 100%;
+        h3 {
+          margin-top: 3rem;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 1199px) {
+  .root {
+    width: 80%;
   }
 }

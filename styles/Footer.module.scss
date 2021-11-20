@@ -2,11 +2,23 @@
 
 .root {
   background-color: $black;
-  padding: 16rem 1.5rem 4rem 1.5rem;
+  padding: 16rem 0 5rem 0;
+}
+
+.content {
+  width: 90%;
+  margin: 0 auto;
   text-align: center;
+  .home_link {
+    display: block;
+    height: 33.416px;
+  }
   hr {
     opacity: 0.5;
     margin: 2rem 0;
+  }
+  .hr_desktop {
+    display: none;
   }
   ul {
     @include list-reset;
@@ -46,4 +58,62 @@
 .address {
   margin: 2rem 0;
   opacity: 0.5;
+}
+
+@media screen and (min-width: 768px) {
+  .root {
+    padding-top: 12rem;
+  }
+
+  .content {
+    text-align: left;
+    .logo_menu_container {
+      display: flex;
+      align-items: center;
+    }
+    ul {
+      display: flex;
+      justify-content: flex-end;
+      margin-left: auto;
+      margin-bottom: 0;
+      align-items: center;
+      li {
+        margin: 0;
+        &:nth-child(2) {
+          margin: 0 1.5rem;
+        }
+        a {
+          @include heading-4;
+          color: $white;
+        }
+      }
+    }
+    .hr_desktop {
+      display: block;
+    }
+    .hr_mobile {
+      display: none;
+    }
+    .address_contact_social_container {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      .contact,
+      .address {
+        margin: 0;
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 992px) {
+  .root {
+    padding-top: 10rem;
+  }
+}
+
+@media screen and (min-width: 1199px) {
+  .content {
+    width: 80%;
+  }
 }

@@ -17,7 +17,7 @@ $gradient_2: linear-gradient(hsla(11, 73%, 66%, 0.5), hsla(11, 73%, 66%, 0.5));
   font-family: Jost;
   font-weight: 500;
   font-size: 3rem;
-  line-height: 3rem;
+  line-height: 3.5rem;
   color: $black;
 }
 
@@ -38,6 +38,16 @@ $gradient_2: linear-gradient(hsla(11, 73%, 66%, 0.5), hsla(11, 73%, 66%, 0.5));
   letter-spacing: 0.3125rem;
   text-transform: uppercase;
   color: $dark-gray;
+}
+
+@mixin heading-4 {
+  font-family: Jost;
+  font-weight: 400;
+  font-size: 0.875rem;
+  line-height: 0.875rem;
+  letter-spacing: 0.125rem;
+  color: $dark-gray;
+  text-transform: uppercase;
 }
 
 @mixin heading-1_mobile {

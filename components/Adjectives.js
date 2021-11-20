@@ -35,8 +35,10 @@ export default function Adjectives() {
             }
             alt={`${adjective.heading} illustration`}
           />
-          <h3>{adjective.heading}</h3>
-          <p>{adjective.body}</p>
+          <div className={styles.text}>
+            <h3>{adjective.heading}</h3>
+            <p>{adjective.body}</p>
+          </div>
         </li>
       ))}
     </ul>

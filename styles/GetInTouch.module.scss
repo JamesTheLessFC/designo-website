@@ -2,15 +2,22 @@
 
 .root {
   background-color: $peach;
+  background-image: url("../public/assets/home/desktop/bg-pattern-hero-home.svg");
+  background-size: 75%;
+  background-position-x: right;
+  background-position-y: center;
   text-align: center;
-  width: 85vw;
+  width: 85%;
   margin: auto;
   margin-top: -5.3rem;
-  padding: 4rem 1rem;
+  padding: 0 1rem;
   border-radius: 8px;
   height: 25.1rem;
   position: relative;
   top: 12.3rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   h1 {
     @include heading-1_mobile;
     color: $white;
@@ -22,6 +29,85 @@
   }
   button {
     @include button-on-dark;
-    margin-top: 2rem;
+    margin: 2rem auto 0 auto;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .root {
+    background-size: 41%;
+    background-position-x: left;
+    background-position-y: -5.2rem;
+    width: 90%;
+    padding: 0 16%;
+    top: 6.275rem;
+    margin-top: 0.725rem;
+    h1 {
+      @include heading-2;
+      color: $white;
+      padding: 0 10%;
+    }
+  }
+}
+
+@media screen and (min-width: 992px) {
+  .root {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    text-align: left;
+    padding: 0 8% 0 0;
+    height: 16rem;
+    background-size: 25%;
+    background-position-x: unset;
+    background-position-y: -6rem;
+    top: 4rem;
+    margin-top: 3rem;
+    .text {
+      width: 60%;
+      padding-left: 8%;
+      display: flex;
+      border-radius: 8px;
+      flex-direction: column;
+      justify-content: center;
+      height: 100%;
+      background: linear-gradient(to right, $peach, $peach 40%, transparent);
+      h1 {
+        text-align: left;
+        padding: 0;
+        margin-bottom: 0.5rem;
+      }
+      p {
+        margin-bottom: 0;
+      }
+    }
+    button {
+      margin: 0;
+    }
+  }
+}
+
+@media screen and (min-width: 1100px) {
+  .root {
+    background-position-y: -8rem;
+  }
+}
+
+@media screen and (min-width: 1199px) {
+  .root {
+    width: 80%;
+    background-position-y: -7rem;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .root {
+    background-position-y: -8rem;
+  }
+}
+
+@media screen and (min-width: 1370px) {
+  .root {
+    background-position-y: -9rem;
   }
 }
