@@ -1,0 +1,66 @@
+@import "./variables.scss";
+
+.root {
+  border-radius: 8px;
+  overflow: hidden;
+  a {
+    display: flex;
+    flex-direction: column;
+    justify-content: stretch;
+    .text {
+      background-color: $extra-light-peach;
+      padding: 10%;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      h3 {
+        @include heading-3;
+        margin-top: 0;
+        color: $peach;
+      }
+      p {
+        @include body;
+        margin: 0;
+      }
+    }
+    &:hover {
+      .text {
+        background-color: $peach;
+        h3,
+        p {
+          color: $white;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 550px) {
+  .root {
+    a {
+      flex-direction: row;
+      .text {
+        padding: 5%;
+        min-width: 50%;
+        max-width: 50%;
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .root {
+    display: flex;
+    a {
+      flex-direction: column;
+      justify-content: stretch;
+      .text {
+        padding: 10%;
+        min-width: unset;
+        max-width: unset;
+        flex-grow: 1;
+      }
+    }
+  }
+}

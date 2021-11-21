@@ -3,7 +3,7 @@
 .root {
   @include list-reset;
   width: 85%;
-  margin: auto;
+  margin: 7rem auto 0 auto;
   li {
     text-align: center;
     position: relative;
@@ -84,7 +84,6 @@
   .root {
     display: flex;
     width: 90%;
-    margin: auto;
     li {
       display: block;
       text-align: center;

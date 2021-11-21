@@ -5,17 +5,17 @@ import Link from "next/link";
 import { useState, useEffect, useCallback } from "react";
 import useScrollbarSize from "react-scrollbar-size";
 
-export default function Categories() {
-  const categories = ["web design", "app design", "graphic design"];
+export default function Categories({ categories }) {
   const [clientWidth, setClientWidth] = useState();
   const { width: scrollbarWidth } = useScrollbarSize();
-  const [screenPercentage, setScreenPercentage] = useState(0.9);
+  const [screenPercentage, setScreenPercentage] = useState();
 
-  // callback & effect necessary to calculate screen width (inc scrollbar) so that we can set css grid styles correctly @ >=992px screen size
+  // memoized callback to run upon window resize
   const handleWindowResize = useCallback(() => {
     setClientWidth(document.body.clientWidth);
   }, []);
 
+  // add listeners for window resize
   useEffect(() => {
     window.addEventListener("resize", handleWindowResize);
     return () => {
@@ -23,6 +23,7 @@ export default function Categories() {
     };
   }, [handleWindowResize]);
 
+  // this adjusts the screen percentage upon screen resize
   useEffect(() => {
     if (clientWidth + scrollbarWidth >= 1199) {
       setScreenPercentage(0.8);
@@ -31,26 +32,44 @@ export default function Categories() {
     }
   }, [clientWidth, scrollbarWidth]);
 
-  const calculateDivHeight = (category) => {
-    if (category === "web design" && clientWidth + scrollbarWidth >= 992) {
-      return {
-        height:
-          (640 / 541) * ((screenPercentage * clientWidth) / 2.0443623) + "px",
-      };
-    } else if (
-      (category === "app design" || category === "graphic design") &&
+  // this sets the initial values when component loads
+  useEffect(() => {
+    if (!clientWidth || !screenPercentage) {
+      const currentClientWidth = document.body.clientWidth;
+      setClientWidth(currentClientWidth);
+      setScreenPercentage(
+        currentClientWidth + scrollbarWidth >= 1199 ? 0.8 : 0.9
+      );
+    }
+  }, [scrollbarWidth, clientWidth, screenPercentage]);
+
+  const getDivHeightStyles = (category) => {
+    if (
+      category === "web design" &&
+      categories.length === 3 &&
       clientWidth + scrollbarWidth >= 992
     ) {
       return {
         height:
+          (640 / 541) * ((screenPercentage * clientWidth) / 2.0443623) + "px",
+      };
+    } else if (clientWidth + scrollbarWidth >= 992) {
+      return {
+        height:
           (308 / 541) * ((screenPercentage * clientWidth) / 2.0443623) + "px",
       };
+    } else if (clientWidth + scrollbarWidth >= 550) {
+      return {
+        height: (200 / 689) * (screenPercentage * clientWidth) + "px",
+      };
     } else {
-      return {};
+      return {
+        height: (250 / 327) * (screenPercentage * clientWidth) + "px",
+      };
     }
   };
 
-  const calculateRowStyles = () => {
+  const getRowStyles = () => {
     if (clientWidth + scrollbarWidth >= 992) {
       return {
         rowGap:
@@ -59,12 +78,19 @@ export default function Categories() {
           0.5693 * ((screenPercentage * clientWidth) / 2.0443623) + "px",
       };
     } else {
-      return {};
+      return {
+        rowGap: screenPercentage * clientWidth * 0.05 + "px",
+      };
     }
   };
 
   return (
-    <ul className={styles.root} style={calculateRowStyles()}>
+    <ul
+      className={`${styles.root} ${
+        categories.length === 2 ? styles.root_category_page : ""
+      }`}
+      style={getRowStyles()}
+    >
       {categories.map((category) => (
         <li key={category}>
           <Link href={`/${category.split(" ").join("-")}`}>
@@ -73,7 +99,7 @@ export default function Categories() {
                 className={`${styles.content} ${
                   styles[`content_${category.split(" ")[0]}`]
                 }`}
-                style={calculateDivHeight(category)}
+                style={getDivHeightStyles(category)}
               >
                 <h2>{category}</h2>
                 <h3>

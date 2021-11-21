@@ -1,8 +1,8 @@
 import styles from "../styles/GetInTouch.module.scss";
 
-export default function GetInTouch() {
+export default function GetInTouch({ pageType }) {
   return (
-    <div className={styles.root}>
+    <div className={`${styles.root} ${styles[`root_${pageType}`]}`}>
       <div className={styles.text}>
         <h1>
           Let&apos;s talk about

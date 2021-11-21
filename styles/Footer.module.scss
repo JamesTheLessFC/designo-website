@@ -60,11 +60,18 @@
   opacity: 0.5;
 }
 
-@media screen and (min-width: 768px) {
+.address > p:first-child,
+.contact > p {
+  font-weight: 700;
+}
+
+@media screen and (min-width: 670px) {
   .root {
     padding-top: 12rem;
   }
+}
 
+@media screen and (min-width: 768px) {
   .content {
     text-align: left;
     .logo_menu_container {
@@ -106,7 +113,7 @@
   }
 }
 
-@media screen and (min-width: 992px) {
+@media screen and (min-width: 910px) {
   .root {
     padding-top: 10rem;
   }
