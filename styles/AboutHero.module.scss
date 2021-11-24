@@ -1,0 +1,78 @@
+@import "./variables.scss";
+
+.root {
+  margin: 5rem auto 7rem auto;
+  .image_container {
+    position: relative;
+  }
+  .text_container {
+    background-color: $peach;
+    text-align: center;
+    padding: 15% 10%;
+    background-image: url("../public/assets/about/mobile/bg-pattern-hero-about-mobile.svg");
+    background-size: 200%;
+    background-position: right 25%;
+    h1 {
+      @include heading-1_mobile;
+      color: $white;
+      margin-top: 0;
+    }
+    p {
+      @include body;
+      color: $white;
+      margin-bottom: 0;
+    }
+  }
+}
+
+@media screen and (min-width: 500px) {
+  .root {
+    width: 90%;
+    margin-top: 7rem;
+    border-radius: 8px;
+    overflow: hidden;
+    .text_container {
+      padding: 7% 10%;
+      background-image: url("../public/assets/about/desktop/bg-pattern-hero-about-desktop.svg");
+      background-size: 80%;
+      background-position: -80% 120%;
+      background-repeat: no-repeat;
+      h1 {
+        @include heading-1;
+        color: $white;
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 900px) {
+  .root {
+    display: flex;
+    flex-direction: row-reverse;
+    .image_container {
+      width: 44%;
+    }
+    .text_container {
+      width: 56%;
+      background-size: 100%;
+      background-position: -80% bottom;
+      padding: 12% 7%;
+      text-align: left;
+      h1 {
+        text-align: left;
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 992px) {
+  .root {
+    margin: 10rem auto;
+  }
+}
+
+@media screen and (min-width: 1199px) {
+  .root {
+    width: 80%;
+  }
+}

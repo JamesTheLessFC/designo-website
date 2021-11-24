@@ -1,0 +1,83 @@
+@import "./variables.scss";
+
+.root {
+  display: flex;
+  flex-direction: column;
+  .image_container {
+    position: relative;
+    width: 100%;
+  }
+  .text_container {
+    text-align: center;
+    background-color: $extra-light-peach;
+    background-image: url("../public/assets/shared/desktop/bg-pattern-three-circles.svg");
+    background-size: 160%;
+    background-position: top left;
+    background-repeat: no-repeat;
+    padding: 15% 10%;
+    h1 {
+      @include heading-1_mobile;
+      color: $peach;
+      margin-top: 0;
+    }
+    p {
+      @include body;
+      margin-bottom: 0;
+    }
+  }
+}
+
+@media screen and (min-width: 500px) {
+  .root {
+    width: 90%;
+    margin: 0 auto;
+    border-radius: 8px;
+    overflow: hidden;
+    .text_container {
+      padding: 7% 10%;
+      background-size: 70%;
+      background-position: 90% 120%;
+      h1 {
+        @include heading-2;
+        color: $peach;
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 900px) {
+  .root {
+    display: flex;
+    background-color: $extra-light-peach;
+    background-repeat: no-repeat;
+    &_talent {
+      flex-direction: row;
+      background-position: 70% bottom;
+      background-image: url("../public/assets/shared/desktop/bg-pattern-three-circles.svg");
+    }
+    &_real_deal {
+      flex-direction: row-reverse;
+      background-image: url("../public/assets/shared/desktop/bg-pattern-two-circles.svg");
+      background-position: left bottom;
+    }
+    .image_container {
+      width: 44%;
+    }
+    .text_container {
+      width: 56%;
+      text-align: left;
+      padding: 15% 7%;
+      background-image: unset;
+      background-color: transparent;
+      h1 {
+        text-align: left;
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 1199px) {
+  .root {
+    width: 80%;
+  }
+}

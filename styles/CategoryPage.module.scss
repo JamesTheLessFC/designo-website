@@ -1,0 +1,17 @@
+@import "./variables.scss";
+
+@media screen and (min-width: 992px) {
+  .root {
+    position: relative;
+    .shape1 {
+      position: absolute;
+      top: 5%; //calc((737px - 9rem) / 2);
+      left: 0;
+      background-color: $light-gray;
+      width: 67vw;
+      height: calc(0.6 * 67vw);
+      border-radius: calc(0.3 * 67vw) / 50%;
+      border-bottom-left-radius: unset;
+    }
+  }
+}

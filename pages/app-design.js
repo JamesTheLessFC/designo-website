@@ -4,10 +4,12 @@ import GetInTouch from "../components/GetInTouch";
 import Footer from "../components/Footer";
 import CategoryHeader from "../components/CategoryHeader";
 import ProjectList from "../components/ProjectList";
+import styles from "../styles/CategoryPage.module.scss";
 
 export default function Home() {
   return (
-    <div>
+    <div className={styles.root}>
+      <div className={styles.shape1}></div>
       <Navbar />
       <CategoryHeader category="app" />
       <ProjectList category="app" />

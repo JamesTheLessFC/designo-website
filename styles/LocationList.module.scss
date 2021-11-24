@@ -1,0 +1,18 @@
+@import "./variables.scss";
+
+.root {
+  @include list-reset;
+  margin-top: 5rem;
+}
+
+@media screen and (min-width: 500px) {
+  .root {
+    margin-top: 8rem;
+  }
+}
+
+@media screen and (min-width: 992px) {
+  .root {
+    margin-top: 10rem;
+  }
+}

@@ -1,0 +1,78 @@
+@import "./variables.scss";
+
+.root {
+  @include list-reset;
+  width: 90%;
+  margin: 7rem auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  li {
+    position: relative;
+    &:first-child {
+      .circle {
+        background: linear-gradient(
+          to top,
+          rgba(93, 2, 2, 0.0001) 0%,
+          rgba(93, 2, 2, 0.497569) 100%
+        );
+      }
+    }
+    &:nth-child(2) {
+      margin: 5rem auto;
+      .circle {
+        background: linear-gradient(
+          to left,
+          rgba(93, 2, 2, 0.0001) 0%,
+          rgba(93, 2, 2, 0.497569) 100%
+        );
+      }
+    }
+    &:last-child {
+      .circle {
+        background: linear-gradient(
+          to bottom,
+          rgba(93, 2, 2, 0.0001) 0%,
+          rgba(93, 2, 2, 0.497569) 100%
+        );
+      }
+    }
+    .circle {
+      width: 202px;
+      height: 202px;
+      border-radius: 50%;
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translate(-50%, 0%);
+      opacity: 0.2;
+    }
+    h3 {
+      @include heading-3_mobile;
+      margin-bottom: 2rem;
+      margin-top: 3rem;
+    }
+    button {
+      @include button-on-light;
+    }
+  }
+}
+
+@media screen and (min-width: 900px) {
+  .root {
+    flex-direction: row;
+    justify-content: space-around;
+    li {
+      &:nth-child(2) {
+        margin: 0;
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 992px) {
+  .root {
+    margin: 10rem auto;
+  }
+}

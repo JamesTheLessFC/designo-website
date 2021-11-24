@@ -1,6 +1,7 @@
 @import "./variables.scss";
 
 .root {
+  position: relative;
   @include list-reset;
   margin: 7rem auto;
   width: 90%;
@@ -19,6 +20,7 @@
 
 @media screen and (min-width: 992px) {
   .root {
+    margin: 10rem auto;
     grid-template-columns: repeat(3, 1fr);
     column-gap: 5%;
   }

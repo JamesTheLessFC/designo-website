@@ -1,4 +1,4 @@
-import styles from "../styles/Home.module.scss";
+import styles from "../styles/CategoryPage.module.scss";
 import Navbar from "../components/Navbar";
 import Categories from "../components/Categories";
 import GetInTouch from "../components/GetInTouch";
@@ -9,6 +9,7 @@ import ProjectList from "../components/ProjectList";
 export default function WebDesignPage() {
   return (
     <div className={styles.root}>
+      <div className={styles.shape1}></div>
       <Navbar />
       <CategoryHeader category="web" />
       <ProjectList category="web" />

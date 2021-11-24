@@ -67,8 +67,9 @@
 
 @media screen and (min-width: 992px) {
   .root {
-    height: 60vw;
-    max-height: calc(737px - 9rem);
+    //height: 60vw;
+    height: calc(737px - 9rem);
+    margin-top: 10rem;
     padding: 5% 0;
     text-align: left;
     display: flex;

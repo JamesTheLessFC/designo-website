@@ -1,4 +1,5 @@
 import Image from "next/image";
+import styles from "../styles/MainPage.module.scss";
 import Navbar from "../components/Navbar";
 import Hero from "../components/Hero";
 import Categories from "../components/Categories";
@@ -8,7 +9,9 @@ import Footer from "../components/Footer";
 
 export default function Home() {
   return (
-    <div>
+    <div className={styles.root}>
+      <div className={styles.shape1}></div>
+      <div className={styles.shape2}></div>
       <Navbar />
       <Hero />
       <Categories categories={["web design", "app design", "graphic design"]} />
