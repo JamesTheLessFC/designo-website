@@ -11,9 +11,13 @@ import {
   faYoutube,
 } from "@fortawesome/free-brands-svg-icons";
 
-export default function Footer() {
+export default function Footer({ page }) {
   return (
-    <div className={styles.root}>
+    <div
+      className={`${styles.root} ${
+        page === "contact" ? styles.root_contact : ""
+      }`}
+    >
       <div className={styles.content}>
         <div className={styles.logo_menu_container}>
           <Link href="/">

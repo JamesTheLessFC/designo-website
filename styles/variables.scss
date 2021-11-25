@@ -137,59 +137,69 @@ $gradient_2: linear-gradient(hsla(11, 73%, 66%, 0.5), hsla(11, 73%, 66%, 0.5));
 
 @mixin textfield {
   position: relative;
-  input[type="text"] {
+  input[type="text"],
+  textarea {
     color: $white;
     background-color: transparent;
     width: 100%;
     border: none;
-    padding: 0.75rem 0;
+    padding: 0.5rem 0 0.5rem 0.75rem;
     font-family: Jost;
     font-weight: 500;
     font-size: 0.9375rem;
     outline: none;
     border-bottom: 2px solid $white;
-    &::-webkit-input-placeholder {
+    margin-bottom: 2rem;
+    &::placeholder {
+      /* Chrome, Firefox, Opera, Safari 10.1+ */
       color: $white-transparent;
       border-width: 1px;
-    } /* WebKit, Blink and Opera */
-    &:-moz-placeholder {
-      color: $white-transparent;
-      border-width: 1px;
-    } /* Mozilla Firefox 4 to 18 */
-    &::-moz-placeholder {
-      color: $white-transparent;
-      border-width: 1px;
-    } /* Mozilla Firefox 19+ */
+      opacity: 1; /* Firefox */
+    }
     &:-ms-input-placeholder {
+      /* Internet Explorer 10-11 */
       color: $white-transparent;
       border-width: 1px;
-    } /* Internet Explorer 10-11 */
+    }
     &::-ms-input-placeholder {
+      /* Microsoft Edge */
       color: $white-transparent;
       border-width: 1px;
-    } /* Edge */
-    &:placeholder-shown {
-      color: $white-transparent;
-      border-width: 1px;
-    } /* CSS Level 4 Selector */
+    }
   }
   p.error_message {
     margin: 0;
     position: absolute;
-    transform: translate(0%, -50%);
-    top: 50%;
+    bottom: 0.5rem;
     right: 0;
     font-family: Jost;
     font-style: italic;
     font-weight: 400;
     font-size: 0.75rem;
-    line-height: 1.625rem;
     color: $white;
     display: flex;
     align-items: center;
     .icon {
       margin-left: 0.5rem;
       font-size: 1.25rem;
+    }
+  }
+  &.textarea_container {
+    padding: 0.5rem 0 0.5rem 0.75rem;
+    border-bottom: 2px solid $white;
+    margin-bottom: 3rem;
+    &_empty {
+      border-bottom: 1px solid $white;
+    }
+    textarea {
+      resize: none;
+      overflow: hidden;
+      padding: 0;
+      margin: 0;
+      border: none;
+    }
+    p.error_message {
+      bottom: -1.625rem;
     }
   }
 }

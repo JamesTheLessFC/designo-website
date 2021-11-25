@@ -1,0 +1,100 @@
+@import "./variables.scss";
+
+.root {
+  margin-top: 5rem;
+  padding: calc(20% - 0.75rem) 5% 20% 5%;
+  background-color: $peach;
+  background-image: url("../public/assets/contact/mobile/bg-pattern-hero-contact-mobile.svg");
+  background-size: 225%;
+  background-position-x: 17%;
+  background-repeat: no-repeat;
+  & > div {
+    h1 {
+      @include heading-1_mobile;
+      color: $white;
+      margin-top: 0;
+    }
+    p {
+      @include body;
+      color: $white;
+      text-align: center;
+    }
+  }
+  form {
+    & > div {
+      @include textfield;
+      //margin-bottom: 1rem;
+    }
+    button[type="submit"] {
+      @include button-on-dark;
+      display: block;
+      margin: auto;
+      margin-top: 2rem;
+      padding: 1rem 2.5rem;
+    }
+  }
+}
+
+@media screen and (min-width: 550px) {
+  .root {
+    width: 90%;
+    margin: auto;
+    margin-top: 8rem;
+    border-radius: 8px;
+    padding: calc(10% - 0.75rem) 7% 10% 7%;
+    background-image: url("../public/assets/contact/desktop/bg-pattern-hero-desktop.svg");
+    background-size: 90%;
+    background-position-x: -13vw;
+    background-position-y: -9vw;
+    & > div {
+      h1 {
+        @include heading-1;
+        color: $white;
+        text-align: left;
+      }
+      p {
+        text-align: left;
+      }
+    }
+    form {
+      button[type="submit"] {
+        margin-right: 0;
+        margin-left: auto;
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 900px) {
+  .root {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: calc(5% - 0.75rem) 5% 5% 5%;
+    & > div {
+      width: 47.5%;
+    }
+    form {
+      width: 47.5%;
+    }
+  }
+}
+
+@media screen and (min-width: 992px) {
+  .root {
+    margin-top: 10rem;
+  }
+}
+
+@media screen and (min-width: 1199px) {
+  .root {
+    padding: calc(5% - 0.75rem) 7% 5% 7%;
+    width: 80%;
+    & > div {
+      width: 46.5%;
+    }
+    form {
+      width: 46.5%;
+    }
+  }
+}

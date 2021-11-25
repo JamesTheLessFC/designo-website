@@ -3,6 +3,9 @@
 .root {
   background-color: $black;
   padding: 16rem 0 5rem 0;
+  &_contact {
+    padding-top: 5rem;
+  }
 }
 
 .content {
@@ -68,6 +71,9 @@
 @media screen and (min-width: 670px) {
   .root {
     padding-top: 12rem;
+    &_contact {
+      padding-top: 5rem;
+    }
   }
 }
 
@@ -116,6 +122,9 @@
 @media screen and (min-width: 910px) {
   .root {
     padding-top: 10rem;
+    &_contact {
+      padding-top: 5rem;
+    }
   }
 }
 
