@@ -150,21 +150,28 @@ $gradient_2: linear-gradient(hsla(11, 73%, 66%, 0.5), hsla(11, 73%, 66%, 0.5));
     outline: none;
     border-bottom: 2px solid $white;
     margin-bottom: 2rem;
+    &.empty {
+      border-width: 1px;
+    }
     &::placeholder {
       /* Chrome, Firefox, Opera, Safari 10.1+ */
       color: $white-transparent;
-      border-width: 1px;
       opacity: 1; /* Firefox */
     }
     &:-ms-input-placeholder {
       /* Internet Explorer 10-11 */
       color: $white-transparent;
-      border-width: 1px;
     }
     &::-ms-input-placeholder {
       /* Microsoft Edge */
       color: $white-transparent;
-      border-width: 1px;
+    }
+    &:-webkit-autofill,
+    &:-webkit-autofill:hover,
+    &:-webkit-autofill:focus,
+    &:-webkit-autofill:active {
+      -webkit-text-fill-color: $white;
+      -webkit-transition: background-color 99999s;
     }
   }
   p.error_message {

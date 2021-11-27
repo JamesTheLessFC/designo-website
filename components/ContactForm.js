@@ -1,8 +1,9 @@
 import styles from "../styles/ContactForm.module.scss";
-import { useState, useEffect } from "react";
+import { useState, createRef } from "react";
 import { validateContactForm } from "../util/validators";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faExclamationCircle } from "@fortawesome/free-solid-svg-icons";
+import ReCAPTCHA from "react-google-recaptcha";
 
 export default function ContactForm() {
   const [name, setName] = useState("");
@@ -10,13 +11,56 @@ export default function ContactForm() {
   const [phone, setPhone] = useState("");
   const [message, setMessage] = useState("");
   const [errors, setErrors] = useState({});
+  const recaptchaRef = createRef();
 
-  const handleSubmit = (e) => {
+  const onReCAPTCHAChange = async (captchaCode) => {
+    if (!captchaCode) {
+      return;
+    }
+    try {
+      const requestBody = {
+        name,
+        email,
+        phone,
+        message,
+        captcha: captchaCode,
+      };
+      const response = await fetch("/api/message", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(requestBody),
+      });
+      if (response.ok) {
+        const jsonResponse = await response.json();
+        console.log(`Message ${jsonResponse.id} uploaded successfully!`);
+      } else {
+        const error = await response.json();
+        throw new Error(error.message);
+      }
+    } catch (err) {
+      console.error(err?.message || "Something went wrong");
+    } finally {
+      recaptchaRef.current.reset();
+      resetForm();
+    }
+  };
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const validationResults = validateContactForm(name, email, phone, message);
     if (!validationResults.valid) {
-      setErrors(validationResults.errors);
+      return setErrors(validationResults.errors);
     }
+    recaptchaRef.current.execute();
+  };
+
+  const resetForm = () => {
+    setName("");
+    setEmail("");
+    setPhone("");
+    setMessage("");
   };
 
   const handleNameChange = (e) => {
@@ -46,13 +90,15 @@ export default function ContactForm() {
           drop us a line.
         </p>
       </div>
-      <form>
+      <form onSubmit={handleSubmit}>
         <div>
           <input
             type="text"
             placeholder="Name"
             maxLength={70}
             onChange={handleNameChange}
+            className={name === "" ? styles.empty : ""}
+            value={name}
           />
           {errors.name && (
             <p className={styles.error_message}>
@@ -69,6 +115,8 @@ export default function ContactForm() {
             type="text"
             placeholder="Email Address"
             onChange={handleEmailChange}
+            className={email === "" ? styles.empty : ""}
+            value={email}
           />
           {errors.email && (
             <p className={styles.error_message}>
@@ -81,7 +129,13 @@ export default function ContactForm() {
           )}
         </div>
         <div>
-          <input type="text" placeholder="Phone" onChange={handlePhoneChange} />
+          <input
+            type="text"
+            placeholder="Phone"
+            onChange={handlePhoneChange}
+            className={phone === "" ? styles.empty : ""}
+            value={phone}
+          />
           {errors.phone && (
             <p className={styles.error_message}>
               {errors.phone}
@@ -102,6 +156,7 @@ export default function ContactForm() {
             maxLength={500}
             onChange={handleMessageChange}
             rows={3}
+            value={message}
           />
           {errors.message && (
             <p className={styles.error_message}>
@@ -113,6 +168,12 @@ export default function ContactForm() {
             </p>
           )}
         </div>
+        <ReCAPTCHA
+          ref={recaptchaRef}
+          sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY}
+          size="invisible"
+          onChange={onReCAPTCHAChange}
+        />
         <button type="submit" onClick={handleSubmit}>
           Submit
         </button>

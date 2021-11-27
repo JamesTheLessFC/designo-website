@@ -1,6 +1,6 @@
 import styles from "../styles/LocationList.module.scss";
 import Location from "./Location";
-import { GoogleMap, LoadScript, Marker } from "@react-google-maps/api";
+import { LoadScript } from "@react-google-maps/api";
 
 const locations = [
   {
