@@ -95,6 +95,9 @@
         &:nth-child(2) {
           margin: 0 1.5rem;
         }
+        &:nth-child(3) {
+          margin-right: 1.5rem;
+        }
         a {
           @include heading-4;
           color: $white;

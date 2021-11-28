@@ -42,6 +42,11 @@ export default function Footer({ page }) {
                 <a>Contact</a>
               </Link>
             </li>
+            <li>
+              <Link href="/admin">
+                <a>Admin</a>
+              </Link>
+            </li>
           </ul>
         </div>
         <hr className={styles.hr_desktop} />

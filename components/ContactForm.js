@@ -1,17 +1,17 @@
 import styles from "../styles/ContactForm.module.scss";
-import { useState, createRef } from "react";
+import { useState, createRef, useRef } from "react";
 import { validateContactForm } from "../util/validators";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faExclamationCircle } from "@fortawesome/free-solid-svg-icons";
 import ReCAPTCHA from "react-google-recaptcha";
 
-export default function ContactForm() {
+export default function ContactForm({ setMessageSuccess, setShowModal }) {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
   const [message, setMessage] = useState("");
   const [errors, setErrors] = useState({});
-  const recaptchaRef = createRef();
+  const recaptchaRef = useRef(null);
 
   const onReCAPTCHAChange = async (captchaCode) => {
     if (!captchaCode) {
@@ -34,16 +34,19 @@ export default function ContactForm() {
       });
       if (response.ok) {
         const jsonResponse = await response.json();
-        console.log(`Message ${jsonResponse.id} uploaded successfully!`);
+        //console.log(`Message ${jsonResponse.id} uploaded successfully!`);
+        setMessageSuccess(true);
       } else {
         const error = await response.json();
         throw new Error(error.message);
       }
     } catch (err) {
-      console.error(err?.message || "Something went wrong");
+      //console.error(err?.message || "Something went wrong");
+      setMessageSuccess(false);
     } finally {
       recaptchaRef.current.reset();
       resetForm();
+      setShowModal(true);
     }
   };
 
