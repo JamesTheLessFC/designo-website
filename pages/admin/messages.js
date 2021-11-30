@@ -15,17 +15,16 @@ export default function MessagesPage({ page }) {
   const [count, setCount] = useState(0);
 
   useEffect(() => {
+    const fetchData = async () => {
+      const response = await fetch(`/api/messages?page=${page}`, {
+        method: "GET",
+      });
+      const jsonResponse = await response.json();
+      setMessages(jsonResponse.messages);
+      setCount(jsonResponse.count);
+    };
     fetchData();
-  }, []);
-
-  const fetchData = async () => {
-    const response = await fetch(`/api/messages?page=${page}`, {
-      method: "GET",
-    });
-    const jsonResponse = await response.json();
-    setMessages(jsonResponse.messages);
-    setCount(jsonResponse.count);
-  };
+  }, [page]);
 
   return (
     <div>

@@ -10,7 +10,7 @@ import { useState, useEffect } from "react";
 export default function MessageListFooter({ count }) {
   const router = useRouter();
   const maxPageLinks = 5;
-  const maxPerPage = 5;
+  const maxPerPage = 10;
   const pageLinkMaxDiff = Math.floor(maxPageLinks / 2);
   const currentPage = Number(router.query.page);
   const [pages, setPages] = useState([]);

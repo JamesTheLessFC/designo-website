@@ -4,11 +4,11 @@ const prisma = new PrismaClient();
 
 export default async function handler(req, res) {
   if (req.method === "GET") {
-    console.log(req.query);
+    const maxPerPage = 10;
     const count = await prisma.message.count();
     const messages = await prisma.message.findMany({
-      take: 5,
-      skip: (Number(req.query.page) - 1) * 5,
+      take: maxPerPage,
+      skip: (Number(req.query.page) - 1) * maxPerPage,
       orderBy: {
         createdAt: "desc",
       },
