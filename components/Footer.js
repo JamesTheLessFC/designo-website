@@ -15,7 +15,9 @@ export default function Footer({ page }) {
   return (
     <div
       className={`${styles.root} ${
-        page === "contact" ? styles.root_contact : ""
+        page === "contact" || page === "admin"
+          ? styles.root_contact_or_admin
+          : ""
       }`}
     >
       <div className={styles.content}>
@@ -43,7 +45,7 @@ export default function Footer({ page }) {
               </Link>
             </li>
             <li>
-              <Link href="/admin">
+              <Link href="/admin/messages?page=1">
                 <a>Admin</a>
               </Link>
             </li>

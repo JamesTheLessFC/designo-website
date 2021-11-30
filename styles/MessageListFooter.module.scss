@@ -1,0 +1,54 @@
+@import "./variables.scss";
+
+.root {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 2rem;
+  & > button {
+    @include button-reset;
+    color: $peach;
+    font-size: 1.25rem;
+    &:hover {
+      color: $light-peach;
+    }
+    &:first-child {
+      margin-right: 0.5rem;
+    }
+    &:last-child {
+      margin-left: 0.5rem;
+    }
+    &:disabled {
+      opacity: 0.5;
+      pointer-events: none;
+    }
+  }
+}
+
+.page_link_buttons {
+  display: flex;
+  p {
+    @include body;
+    margin: 0;
+    color: $dark-gray;
+    &:first-child {
+      margin-left: 0.75rem;
+    }
+    &:last-child {
+      margin-right: 0.75rem;
+    }
+  }
+  button {
+    @include button-reset;
+    @include body;
+    margin: 0 0.5rem;
+    padding: 0.25rem;
+    color: $dark-gray;
+    &.active {
+      border-bottom: 2px solid $peach;
+      color: $peach;
+    }
+    &:hover {
+      color: $peach;
+    }
+  }
+}

@@ -1,0 +1,179 @@
+@import "./variables.scss";
+
+.root {
+  border-bottom: 1px solid $light-gray;
+  .summary {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem 1rem 0.5rem 3.25rem;
+    position: relative;
+    .checkbox_container {
+      position: absolute;
+      left: 1rem;
+      margin-right: 2.25rem;
+      cursor: pointer;
+      &:hover {
+        .checkmark {
+          background-color: $light-gray;
+        }
+      }
+      input[type="checkbox"] {
+        position: absolute;
+        opacity: 0;
+        cursor: pointer;
+        height: 1.25rem;
+        width: 1.25rem;
+        top: 0;
+        left: 0;
+        transform: translate(0%, -50%);
+        margin: 0;
+        padding: 0;
+      }
+      .checkmark {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 1.25rem;
+        width: 1.25rem;
+        background-color: $white;
+        border-radius: 4px;
+        border: 1px solid $dark-gray;
+        transform: translate(0%, -50%);
+        color: $peach;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        pointer-events: none;
+        .icon {
+          font-size: 0.9rem;
+        }
+      }
+    }
+    .date {
+      width: 35%;
+      margin-right: auto;
+    }
+    .name {
+      margin-right: auto;
+    }
+    .email,
+    .phone,
+    .message {
+      display: none;
+    }
+    p {
+      @include body;
+      margin: 0;
+    }
+    button {
+      @include button-reset;
+      color: $peach;
+      font-size: 1rem;
+      width: 1rem;
+      &:hover {
+        color: $light-peach;
+      }
+    }
+  }
+  .details_wrapper {
+    overflow: hidden;
+    &::after {
+      content: "";
+      height: 50px;
+      transition: height 0.3s linear, max-height 0s 0.3s linear;
+      max-height: 0px;
+    }
+    &_collapsed {
+      .details {
+        margin-bottom: -2000px;
+        transition: margin-bottom 0.3s cubic-bezier(1, 0, 1, 1),
+          visibility 0s 0.3s, max-height 0s 0.3s;
+        visibility: hidden;
+        max-height: 0;
+      }
+      &::after {
+        height: 0;
+        transition: height 0.3s linear;
+        max-height: 50px;
+      }
+    }
+  }
+  .details {
+    transition: margin-bottom 0.3s cubic-bezier(0, 0, 0, 1);
+    margin-bottom: 0;
+    margin-left: auto;
+    margin-right: auto;
+    max-height: 100000px;
+    width: 90%;
+    border-left: 5px solid $peach;
+    padding-left: 1rem;
+    p {
+      @include body;
+    }
+    .icon {
+      margin-right: 0.5rem;
+      color: $peach;
+    }
+  }
+}
+
+@media screen and (min-width: 400px) {
+  .root {
+    .summary {
+      .name {
+        width: 35%;
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 650px) {
+  .root {
+    .summary {
+      .date {
+        width: 20%;
+      }
+      .name,
+      .email {
+        display: block;
+        width: 30%;
+        margin-right: auto;
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 800px) {
+  .root {
+    .details {
+      p {
+        padding-right: 20%;
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 992px) {
+  .root {
+    .summary {
+      .date {
+        width: 15%;
+      }
+      .name,
+      .email {
+        width: 20%;
+      }
+      .phone {
+        width: 15%;
+        display: block;
+        margin-right: auto;
+      }
+    }
+    .details {
+      p {
+        padding-right: 30%;
+      }
+    }
+  }
+}
