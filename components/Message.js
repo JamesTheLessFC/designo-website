@@ -12,23 +12,34 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import styles from "../styles/Message.module.scss";
 import { useState } from "react";
 
-export default function Message({ data }) {
-  const { id, name, email, phone, message, createdAt } = data;
+export default function Message({
+  data,
+  selectMessage,
+  deselectMessage,
+  selected,
+}) {
+  const { id, name, email, phone, message, createdAt, read, important } = data;
   const [showDetails, setShowDetails] = useState(false);
-  const [selected, setSelected] = useState(false);
 
   const toggleDetails = () => {
     setShowDetails((prevState) => !prevState);
   };
 
   const toggleSelected = () => {
-    console.log("check");
-    setSelected((prevState) => !prevState);
+    if (!selected) {
+      selectMessage(id);
+    } else {
+      deselectMessage(id);
+    }
   };
 
   return (
     <li className={styles.root}>
-      <div className={styles.summary}>
+      <div
+        className={`${styles.summary} ${!read ? styles.summary_unread : ""} ${
+          important ? styles.summary_important : ""
+        }`}
+      >
         <div className={styles.checkbox_container}>
           <input type="checkbox" onChange={toggleSelected} />
           <span className={styles.checkmark}>

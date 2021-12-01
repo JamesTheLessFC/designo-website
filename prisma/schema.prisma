@@ -17,4 +17,6 @@ model Message {
   email String
   phone String
   message String
+  read Boolean @default(false)
+  important Boolean @default(false)
 }

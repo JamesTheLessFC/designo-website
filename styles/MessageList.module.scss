@@ -1,6 +1,7 @@
 @import "./variables.scss";
 
 .root {
+  position: relative;
   margin: auto;
   margin-top: 5rem;
   margin-bottom: 5rem;
@@ -12,7 +13,7 @@
 .list_header {
   display: flex;
   background-color: $peach;
-  padding: 1rem 2rem 1rem 3.25rem;
+  padding: 1rem 1rem 1rem 3.25rem;
   p {
     @include body;
     margin: 0;
@@ -28,6 +29,35 @@
   .phone,
   .message {
     display: none;
+  }
+  button {
+    @include button-reset;
+    font-size: 1rem;
+    color: $white;
+    width: 1rem;
+  }
+}
+
+.actions_container {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: flex-start;
+  border-radius: 8px;
+  overflow: hidden;
+  position: absolute;
+  right: 1rem;
+  top: 3rem;
+  z-index: 1;
+  button {
+    @include button-reset;
+    @include body;
+    background-color: $light-gray;
+    width: 100%;
+    text-align: left;
+    padding: 0.5rem 1rem;
+    &:hover {
+      background-color: $light-peach;
+    }
   }
 }
 
