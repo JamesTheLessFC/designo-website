@@ -5,6 +5,8 @@ import Footer from "../../components/Footer";
 import { useGetMessagesQuery } from "../../services/messages";
 import { useDispatch } from "react-redux";
 import { setMessages, setCount } from "../../features/messages/messagesSlice";
+import MessagesHeader from "../../components/MessagesHeader";
+import styles from "../../styles/page.module.scss";
 
 export async function getServerSideProps({ query }) {
   const pageString = query.page;
@@ -28,8 +30,9 @@ export default function MessagesPage({ page, sortBy }) {
   }, [data, dispatch]);
 
   return (
-    <div>
+    <div className={styles.root}>
       <Navbar />
+      <MessagesHeader />
       <MessageList loading={isFetching} error={isError} />
       <Footer page="admin" />
     </div>

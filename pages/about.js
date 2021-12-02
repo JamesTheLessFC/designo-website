@@ -10,6 +10,7 @@ import realDealImageTablet from "../public/assets/about/tablet/image-real-deal.j
 import talentImageDesktop from "../public/assets/about/desktop/image-world-class-talent.jpg";
 import realDealImageDesktop from "../public/assets/about/desktop/image-real-deal.jpg";
 import LocationLinks from "../components/LocationLinks";
+import styles from "../styles/page.module.scss";
 
 const content = {
   talent: {
@@ -38,7 +39,7 @@ const content = {
 
 export default function AboutPage() {
   return (
-    <div>
+    <div className={styles.root}>
       <Navbar />
       <AboutHero />
       <AboutPageSection content={content.talent} />

@@ -1,9 +1,10 @@
 import styles from "../styles/Hero.module.scss";
 import Image from "next/image";
-import circlePattern from "../public/assets/home/desktop/bg-pattern-hero-home.svg";
 import phoneImage from "../public/assets/home/desktop/image-hero-phone.png";
+import { useRouter } from "next/router";
 
 export default function Hero() {
+  const router = useRouter();
   return (
     <div className={styles.root}>
       <div className={styles.text}>
@@ -13,9 +14,8 @@ export default function Hero() {
           fully responsive websites, app design, and engaging brand experiences.
           Find out more about our services.
         </p>
-        <button>Learn more</button>
+        <button onClick={() => router.push("/about")}>Learn more</button>
       </div>
-      {/* <div className={styles.image_container_outer}> */}
       <div className={styles.image_container}>
         <Image
           src={phoneImage}
@@ -26,7 +26,6 @@ export default function Hero() {
           priority
         />
       </div>
-      {/* </div> */}
     </div>
   );
 }

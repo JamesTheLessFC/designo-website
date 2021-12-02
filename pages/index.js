@@ -1,4 +1,3 @@
-import Image from "next/image";
 import styles from "../styles/MainPage.module.scss";
 import Navbar from "../components/Navbar";
 import Hero from "../components/Hero";
