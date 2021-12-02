@@ -32,7 +32,7 @@ export default function MessageList({ loading, error }) {
   const { messages } = useSelector(selectMessages);
   const [selectedIds, setSelectedIds] = useState([]);
   const [activeButton, setActiveButton] = useState("");
-  const [showSortMenu, setSortMenu] = useState(false);
+  const [showSortMenu, setShowSortMenu] = useState(false);
   const router = useRouter();
   const sortBy = router.query.sortBy;
 
@@ -43,7 +43,7 @@ export default function MessageList({ loading, error }) {
 
   const toggleSortMenu = (e) => {
     e.stopPropagation();
-    setSortMenu((prevState) => !prevState);
+    setShowSortMenu((prevState) => !prevState);
   };
 
   const selectAll = (e) => {
@@ -68,6 +68,7 @@ export default function MessageList({ loading, error }) {
     if (showActionsMenu) {
       const handleOutsideClick = () => {
         setShowActionsMenu(false);
+        setShowSortMenu(false);
       };
       setTimeout(() => {
         window.addEventListener("click", handleOutsideClick);
@@ -81,6 +82,7 @@ export default function MessageList({ loading, error }) {
   const toggleActionsMenu = (e) => {
     e.stopPropagation();
     setShowActionsMenu((prevState) => !prevState);
+    if (showSortMenu) setShowSortMenu(false);
   };
 
   const deleteSelected = async (e) => {

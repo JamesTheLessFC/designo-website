@@ -6,12 +6,21 @@
   margin-bottom: 5rem;
   ul {
     @include list-reset;
+    min-height: 26.875rem;
+    background-color: $extra-light-gray;
+    border-radius: 8px;
   }
   .loading_message,
   .error_message,
   .empty_message {
-    text-align: center;
-    padding: 2rem;
+    height: 26.875rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: $extra-light-gray;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
     .icon {
       font-size: 2rem;
       color: $peach;
