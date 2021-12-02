@@ -3,22 +3,19 @@ import ContactForm from "../components/ContactForm";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import ContactModal from "../components/ContactModal";
-import { useState } from "react";
+import { useAddMessageMutation } from "../services/messages";
 
 export default function ContactPage() {
-  const [showModal, setShowModal] = useState(false);
-  const [messageSuccess, setMessageSuccess] = useState(false);
+  const [addMessage, { isLoading, isSuccess, isError }] =
+    useAddMessageMutation();
 
   return (
     <div>
       <Navbar />
-      <ContactForm
-        setShowModal={setShowModal}
-        setMessageSuccess={setMessageSuccess}
-      />
+      <ContactForm addMessage={addMessage} />
       <LocationLinks />
       <Footer page="contact" />
-      {showModal && <ContactModal success={messageSuccess} />}
+      {(isSuccess || isError) && <ContactModal success={isSuccess} />}
     </div>
   );
 }

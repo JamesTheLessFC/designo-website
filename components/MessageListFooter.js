@@ -6,14 +6,17 @@ import {
   faChevronRight,
 } from "@fortawesome/free-solid-svg-icons";
 import { useState, useEffect } from "react";
+import { useSelector } from "react-redux";
+import { selectMessages } from "../features/messages/messagesSlice";
 
-export default function MessageListFooter({ count }) {
+export default function MessageListFooter() {
   const router = useRouter();
   const maxPageLinks = 5;
   const maxPerPage = 10;
   const pageLinkMaxDiff = Math.floor(maxPageLinks / 2);
   const currentPage = Number(router.query.page);
   const [pages, setPages] = useState([]);
+  const { count } = useSelector(selectMessages);
 
   useEffect(() => {
     const pageNumbers = [];

@@ -1,11 +1,11 @@
 import styles from "../styles/ContactForm.module.scss";
-import { useState, createRef, useRef } from "react";
+import { useState, useRef } from "react";
 import { validateContactForm } from "../util/validators";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faExclamationCircle } from "@fortawesome/free-solid-svg-icons";
 import ReCAPTCHA from "react-google-recaptcha";
 
-export default function ContactForm({ setMessageSuccess, setShowModal }) {
+export default function ContactForm({ addMessage }) {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
@@ -17,37 +17,23 @@ export default function ContactForm({ setMessageSuccess, setShowModal }) {
     if (!captchaCode) {
       return;
     }
-    try {
-      const requestBody = {
-        name,
-        email,
-        phone,
-        message,
-        captcha: captchaCode,
-      };
-      const response = await fetch("/api/message", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(requestBody),
-      });
-      if (response.ok) {
-        const jsonResponse = await response.json();
-        //console.log(`Message ${jsonResponse.id} uploaded successfully!`);
-        setMessageSuccess(true);
-      } else {
-        const error = await response.json();
-        throw new Error(error.message);
-      }
-    } catch (err) {
-      //console.error(err?.message || "Something went wrong");
-      setMessageSuccess(false);
-    } finally {
-      recaptchaRef.current.reset();
-      resetForm();
-      setShowModal(true);
-    }
+    const requestBody = {
+      name,
+      email,
+      phone,
+      message,
+      captcha: captchaCode,
+    };
+    // const response = await fetch("/api/message", {
+    //   method: "POST",
+    //   headers: {
+    //     "Content-Type": "application/json",
+    //   },
+    //   body: JSON.stringify(requestBody),
+    // });
+    const response = await addMessage(requestBody);
+    recaptchaRef.current.reset();
+    resetForm();
   };
 
   const handleSubmit = async (e) => {

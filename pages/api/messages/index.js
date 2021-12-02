@@ -1,6 +1,4 @@
-import { PrismaClient } from "@prisma/client";
-
-const prisma = new PrismaClient();
+import { prisma } from "../../../db";
 
 export default async function handler(req, res) {
   if (req.method === "GET") {
@@ -15,17 +13,18 @@ export default async function handler(req, res) {
     });
     return res.status(200).json({ messages, count });
   } else if (req.method === "DELETE") {
-    const messagesToDelete = req.query.ids.split(",").map((id) => Number(id));
+    const messageIds = req.query.ids.split(",").map((id) => Number(id));
     await prisma.message.deleteMany({
       where: {
         id: {
-          in: messagesToDelete,
+          in: messageIds,
         },
       },
     });
-    return res.status(200).json({ message: "Delete successful" });
+    return res.status(200).json({ messageIds });
   } else if (req.method === "PATCH") {
     const updates = {};
+    const messageIds = req.body.messageIds;
     if (Object.keys(req.body.updates).includes("read")) {
       updates.read = req.body.updates.read;
     }
@@ -35,11 +34,11 @@ export default async function handler(req, res) {
     await prisma.message.updateMany({
       where: {
         id: {
-          in: req.body.idsToUpdate,
+          in: messageIds,
         },
       },
       data: updates,
     });
-    return res.status(200).json({ message: "Update successful" });
+    return res.status(200).json({ messageIds });
   }
 }

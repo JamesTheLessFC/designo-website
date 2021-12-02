@@ -4,31 +4,43 @@ import MessageListFooter from "./MessageListFooter";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEllipsisV } from "@fortawesome/free-solid-svg-icons";
 import { useState, useEffect } from "react";
+import {
+  useDeleteMessagesMutation,
+  useUpdateMessagesMutation,
+} from "../services/messages";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  selectMessages,
+  selectAllMessages,
+  markMessagesAsRead,
+  markMessagesAsImportant,
+  markMessagesAsNotImportant,
+  markMessagesAsUnread,
+} from "../features/messages/messagesSlice";
 
-export default function MessageList({ messages, count }) {
+export default function MessageList() {
   const [showActionsMenu, setShowActionsMenu] = useState(false);
+  const dispatch = useDispatch();
+  const { messages } = useSelector(selectMessages);
   const [selectedIds, setSelectedIds] = useState([]);
 
-  const selectMessage = (id) => {
-    setSelectedIds((prevState) => {
-      return [...prevState, id];
-    });
-  };
-
-  const deselectMessage = (id) => {
-    setSelectedIds((prevState) => {
-      return prevState.filter((selectedId) => id !== selectedId);
-    });
-  };
+  const [updateMessages, { isLoading: isUpdating, error: updateError }] =
+    useUpdateMessagesMutation();
+  const [deleteMessages, { isLoading: isDeleting, error: deleteError }] =
+    useDeleteMessagesMutation();
 
   const selectAll = (e) => {
     e.stopPropagation();
-    const arr = [];
-    messages.forEach((message) => {
-      arr.push(message.id);
-    });
-    setSelectedIds(arr);
+    dispatch(selectAllMessages());
   };
+
+  useEffect(() => {
+    setSelectedIds(
+      messages
+        .filter((message) => message.selected)
+        .map((message) => message.id)
+    );
+  }, [messages]);
 
   useEffect(() => {
     if (showActionsMenu) {
@@ -51,31 +63,46 @@ export default function MessageList({ messages, count }) {
 
   const deleteSelected = async (e) => {
     e.stopPropagation();
-    const idsToDelete = selectedIds.join(",");
-    const response = await fetch(`/api/messages?ids=${idsToDelete}`, {
-      method: "DELETE",
-    });
-    const jsonResponse = await response.json();
-    console.log(jsonResponse.message);
+    const response = await deleteMessages(getSelectedIds());
   };
 
-  const updateSelected = async (e, field, value) => {
-    e.stopPropagation();
-    const reqBody = {
-      idsToUpdate: selectedIds,
+  const updateSelectedMessages = async (field, value) => {
+    const requestBody = {
+      messageIds: selectedIds,
       updates: {
         [field]: value,
       },
     };
-    const response = await fetch(`/api/messages`, {
-      method: "PATCH",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(reqBody),
-    });
-    const jsonResponse = await response.json();
-    console.log(jsonResponse.message);
+    await updateMessages(requestBody);
+    const createAction =
+      field === "read" && value
+        ? markMessagesAsRead
+        : field === "read"
+        ? markMessagesAsUnread
+        : field === "important" && value
+        ? markMessagesAsImportant
+        : markMessagesAsNotImportant;
+    dispatch(createAction(selectedIds));
+  };
+
+  const markSelectedAsRead = async (e) => {
+    e.stopPropagation();
+    await updateSelectedMessages("read", true);
+  };
+
+  const markSelectedAsUnread = async (e) => {
+    e.stopPropagation();
+    await updateSelectedMessages("read", false);
+  };
+
+  const markSelectedAsImportant = async (e) => {
+    e.stopPropagation();
+    await updateSelectedMessages("important", true);
+  };
+
+  const markSelectedAsNotImportant = async (e) => {
+    e.stopPropagation();
+    await updateSelectedMessages("important", false);
   };
 
   return (
@@ -93,33 +120,41 @@ export default function MessageList({ messages, count }) {
       {showActionsMenu && (
         <div className={styles.actions_container}>
           <button onClick={selectAll}>Select All</button>
-          <button onClick={deleteSelected}>Delete</button>
-          <button onClick={(e) => updateSelected(e, "important", true)}>
+          <button onClick={deleteSelected} disabled={selectedIds.length === 0}>
+            Delete
+          </button>
+          <button
+            onClick={markSelectedAsImportant}
+            disabled={selectedIds.length === 0}
+          >
             Highlight
           </button>
-          <button onClick={(e) => updateSelected(e, "important", false)}>
+          <button
+            onClick={markSelectedAsNotImportant}
+            disabled={selectedIds.length === 0}
+          >
             Remove Highlight
           </button>
-          <button onClick={(e) => updateSelected(e, "read", true)}>
+          <button
+            onClick={markSelectedAsRead}
+            disabled={selectedIds.length === 0}
+          >
             Mark as Read
           </button>
-          <button onClick={(e) => updateSelected(e, "read", false)}>
+          <button
+            onClick={markSelectedAsUnread}
+            disabled={selectedIds.length === 0}
+          >
             Mark as Unread
           </button>
         </div>
       )}
       <ul>
         {messages.map((message) => (
-          <Message
-            key={message.id}
-            data={message}
-            selectMessage={selectMessage}
-            deselectMessage={deselectMessage}
-            selected={selectedIds.includes(message.id)}
-          />
+          <Message key={message.id} data={message} />
         ))}
       </ul>
-      <MessageListFooter count={count} />
+      <MessageListFooter />
     </div>
   );
 }
