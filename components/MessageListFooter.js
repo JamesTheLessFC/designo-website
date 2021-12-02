@@ -15,6 +15,7 @@ export default function MessageListFooter() {
   const maxPerPage = 10;
   const pageLinkMaxDiff = Math.floor(maxPageLinks / 2);
   const currentPage = Number(router.query.page);
+  const sortBy = router.query.sortBy;
   const [pages, setPages] = useState([]);
   const { count } = useSelector(selectMessages);
 
@@ -28,7 +29,7 @@ export default function MessageListFooter() {
   }, [count]);
 
   const navigateToPage = (page) => {
-    router.push(`/admin/messages?page=${page}`);
+    router.push(`/admin/messages?sortBy=${sortBy}&page=${page}`);
   };
 
   return (

@@ -17,7 +17,7 @@ const content = {
 
 export default function CategoryHeader({ category }) {
   return (
-    <div className={`${styles.root}`}>
+    <div className={styles.root}>
       <h1>{content[category].heading}</h1>
       <p>{content[category].body}</p>
     </div>

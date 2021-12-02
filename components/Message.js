@@ -8,7 +8,6 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import styles from "../styles/Message.module.scss";
-import { useState, useEffect } from "react";
 import { useUpdateMessageMutation } from "../services/messages";
 import {
   toggleOpen,
@@ -41,7 +40,10 @@ export default function Message({ data }) {
         },
       };
       const response = await updateMessage({ id, ...requestBody });
-      dispatch(markMessageAsRead(id));
+      if (response.messageId) {
+        // db was successfully updated
+        dispatch(markMessageAsRead(response.messageId));
+      }
     }
     dispatch(toggleOpen(id));
   };

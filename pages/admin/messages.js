@@ -1,5 +1,5 @@
 import MessageList from "../../components/MessageList";
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import Navbar from "../../components/Navbar";
 import Footer from "../../components/Footer";
 import { useGetMessagesQuery } from "../../services/messages";
@@ -9,14 +9,13 @@ import { setMessages, setCount } from "../../features/messages/messagesSlice";
 export async function getServerSideProps({ query }) {
   const pageString = query.page;
   return {
-    props: { page: Number(pageString) },
+    props: { page: Number(pageString), sortBy: query.sortBy },
   };
 }
 
-export default function MessagesPage({ page }) {
-  // const [messages, setMessages] = useState([]);
-  // const [count, setCount] = useState(0);
-  const { data, error, isFetching } = useGetMessagesQuery({
+export default function MessagesPage({ page, sortBy }) {
+  const { data, isError, isFetching } = useGetMessagesQuery({
+    sortBy,
     page,
   });
   const dispatch = useDispatch();
@@ -28,20 +27,10 @@ export default function MessagesPage({ page }) {
     }
   }, [data, dispatch]);
 
-  // if (isFetching) {
-  //   return (
-  //     <div>
-  //       <Navbar />
-  //       <MessageList messages={[]} count={0} />
-  //       <Footer page="admin" />
-  //     </div>
-  //   );
-  // }
-
   return (
     <div>
       <Navbar />
-      <MessageList />
+      <MessageList loading={isFetching} error={isError} />
       <Footer page="admin" />
     </div>
   );

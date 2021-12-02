@@ -8,7 +8,8 @@ export const messagesApi = createApi({
   tagTypes: ["Message"],
   endpoints: (builder) => ({
     getMessages: builder.query({
-      query: ({ page = 1 }) => `messages?page=${page}`,
+      query: ({ page = 1, sortBy = "date" }) =>
+        `messages?sortBy=${sortBy}&page=${page}`,
       providesTags: (result) =>
         result && Array.isArray(result)
           ? [

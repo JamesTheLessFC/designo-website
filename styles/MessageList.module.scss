@@ -8,6 +8,19 @@
   ul {
     @include list-reset;
   }
+  .loading_message,
+  .error_message,
+  .empty_message {
+    text-align: center;
+    padding: 2rem;
+    .icon {
+      font-size: 2rem;
+      color: $peach;
+    }
+    p {
+      @include body;
+    }
+  }
 }
 
 .list_header {
@@ -48,6 +61,7 @@
   right: 1rem;
   top: 3rem;
   z-index: 1;
+  width: 12rem;
   button {
     @include button-reset;
     @include body;
@@ -61,6 +75,26 @@
     &:disabled {
       color: $black-transparent;
       pointer-events: none;
+    }
+  }
+  .sort_by_button {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .sort_by_actions {
+    overflow: hidden;
+    transition: height 0.3s ease-out;
+    height: 7.875rem;
+    width: 100%;
+    button {
+      padding-left: 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    &_hidden {
+      height: 0rem;
     }
   }
 }
