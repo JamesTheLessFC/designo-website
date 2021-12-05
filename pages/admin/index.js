@@ -7,6 +7,7 @@ import Dashboard from "../../components/Dashboard";
 import Footer from "../../components/Footer";
 import AdminHeader from "../../components/AdminHeader";
 import { faUserShield } from "@fortawesome/free-solid-svg-icons";
+import HeadComponent from "../../components/HeadComponent";
 
 function AdminPage({ router }) {
   const { data: session, status } = useSession();
@@ -19,6 +20,7 @@ function AdminPage({ router }) {
 
   return (
     <div className={styles.root}>
+      <HeadComponent title="Designo - Admin Dashboard" />
       <Navbar />
       <AdminHeader title="Admin Dashboard" icon={faUserShield} />
       <Dashboard />

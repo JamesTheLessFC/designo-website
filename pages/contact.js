@@ -5,6 +5,7 @@ import Footer from "../components/Footer";
 import ContactModal from "../components/ContactModal";
 import { useAddMessageMutation } from "../services/messages";
 import styles from "../styles/page.module.scss";
+import HeadComponent from "../components/HeadComponent";
 
 export default function ContactPage() {
   const [addMessage, { isLoading, isSuccess, isError, data }] =
@@ -12,6 +13,7 @@ export default function ContactPage() {
 
   return (
     <div className={styles.root}>
+      <HeadComponent title="Designo - Contact" />
       <Navbar />
       <ContactForm addMessage={addMessage} />
       <LocationLinks />

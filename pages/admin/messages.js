@@ -11,6 +11,7 @@ import { useSession } from "next-auth/react";
 import { withRouter } from "next/router";
 import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
 import BackLink from "../../components/BackLink";
+import HeadComponent from "../../components/HeadComponent";
 
 export async function getServerSideProps({ query }) {
   const pageString = query.page;
@@ -42,6 +43,7 @@ function MessagesPage({ page, sortBy, router }) {
 
   return (
     <div className={styles.root}>
+      <HeadComponent title="Designo - Message Inbox" />
       <Navbar />
       <AdminHeader title="Message Inbox" icon={faEnvelope} />
       <BackLink link={"/admin"} />

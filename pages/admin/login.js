@@ -5,6 +5,7 @@ import { useRouter } from "next/router";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faExclamationCircle, faLock } from "@fortawesome/free-solid-svg-icons";
 import Link from "next/link";
+import HeadComponent from "../../components/HeadComponent";
 
 export default function LoginPage() {
   const [username, setUsername] = useState("");
@@ -40,6 +41,7 @@ export default function LoginPage() {
 
   return (
     <div className={styles.root}>
+      <HeadComponent title="Designo - Admin Login" />
       <FontAwesomeIcon icon={faLock} className={styles.icon} />
       {loginError && (
         <p>

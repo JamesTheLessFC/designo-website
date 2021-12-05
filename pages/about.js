@@ -11,6 +11,7 @@ import talentImageDesktop from "../public/assets/about/desktop/image-world-class
 import realDealImageDesktop from "../public/assets/about/desktop/image-real-deal.jpg";
 import LocationLinks from "../components/LocationLinks";
 import styles from "../styles/page.module.scss";
+import HeadComponent from "../components/HeadComponent";
 
 const content = {
   talent: {
@@ -40,6 +41,7 @@ const content = {
 export default function AboutPage() {
   return (
     <div className={styles.root}>
+      <HeadComponent title="Designo - About" />
       <Navbar />
       <AboutHero />
       <AboutPageSection content={content.talent} />

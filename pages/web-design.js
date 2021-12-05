@@ -5,10 +5,12 @@ import GetInTouch from "../components/GetInTouch";
 import Footer from "../components/Footer";
 import CategoryHeader from "../components/CategoryHeader";
 import ProjectList from "../components/ProjectList";
+import HeadComponent from "../components/HeadComponent";
 
 export default function WebDesignPage() {
   return (
     <div className={styles.root}>
+      <HeadComponent title="Designo - Web Design" />
       <div className={styles.shape1}></div>
       <Navbar />
       <CategoryHeader category="web" />
