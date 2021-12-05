@@ -1,0 +1,56 @@
+@import "./variables.scss";
+
+.root {
+  background-color: $peach;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  min-width: 320px;
+  & > p {
+    @include body;
+    color: $white;
+    width: 17rem;
+    margin-bottom: 2rem;
+    display: flex;
+    align-items: center;
+    .icon {
+      font-size: 2rem;
+      margin: 0;
+      margin-right: 1rem;
+      color: $white;
+    }
+  }
+  .icon {
+    font-size: 4rem;
+    margin-bottom: 2rem;
+    color: $light-peach;
+  }
+  form {
+    display: flex;
+    flex-direction: column;
+    width: 17rem;
+    div {
+      @include textfield;
+    }
+    button {
+      @include button-on-dark;
+      margin-bottom: 4rem;
+      &:disabled {
+        pointer-events: none;
+        background-color: $light-peach;
+        color: $white;
+      }
+    }
+  }
+  a {
+    @include heading-3_mobile;
+    color: $white;
+    padding-bottom: 0.1rem;
+    &:hover {
+      border-bottom: 2px solid $white;
+      padding-bottom: calc(0.1rem - 2px);
+    }
+  }
+}

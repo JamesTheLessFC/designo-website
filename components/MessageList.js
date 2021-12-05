@@ -99,7 +99,7 @@ export default function MessageList({ loading, error }) {
       },
     };
     const response = await updateMessages(requestBody);
-    if (response.messageIds) {
+    if (response.data.messageIds) {
       // db was successfully updated
       const createAction =
         field === "read" && value
@@ -109,7 +109,7 @@ export default function MessageList({ loading, error }) {
           : field === "important" && value
           ? markMessagesAsImportant
           : markMessagesAsNotImportant;
-      dispatch(createAction(response.messageIds));
+      dispatch(createAction(response.data.messageIds));
     }
   };
 

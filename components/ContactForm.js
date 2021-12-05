@@ -24,13 +24,6 @@ export default function ContactForm({ addMessage }) {
       message,
       captcha: captchaCode,
     };
-    // const response = await fetch("/api/message", {
-    //   method: "POST",
-    //   headers: {
-    //     "Content-Type": "application/json",
-    //   },
-    //   body: JSON.stringify(requestBody),
-    // });
     const response = await addMessage(requestBody);
     recaptchaRef.current.reset();
     resetForm();

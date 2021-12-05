@@ -1,6 +1,11 @@
 import { prisma } from "../../../db";
+import { getSession } from "next-auth/react";
 
 export default async function handler(req, res) {
+  const session = await getSession({ req });
+  if (!session) {
+    return res.status(401).end();
+  }
   if (req.method === "GET") {
     try {
       const maxPerPage = 10;
@@ -16,6 +21,7 @@ export default async function handler(req, res) {
       });
       return res.status(200).json({ messages, count });
     } catch (err) {
+      console.error(err);
       return res.status(500).json({ message: "Something went wrong" });
     }
   } else if (req.method === "DELETE") {
@@ -30,6 +36,7 @@ export default async function handler(req, res) {
       });
       return res.status(200).json({ messageIds });
     } catch (err) {
+      console.error(err);
       return res.status(500).json({ message: "Something went wrong" });
     }
   } else if (req.method === "PATCH") {
@@ -52,6 +59,7 @@ export default async function handler(req, res) {
       });
       return res.status(200).json({ messageIds });
     } catch (err) {
+      console.error(err);
       return res.status(500).json({ message: "Something went wrong" });
     }
   }

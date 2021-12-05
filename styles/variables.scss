@@ -138,7 +138,7 @@ $gradient_2: linear-gradient(hsla(11, 73%, 66%, 0.5), hsla(11, 73%, 66%, 0.5));
 
 @mixin textfield {
   position: relative;
-  input[type="text"],
+  input,
   textarea {
     color: $white;
     background-color: transparent;

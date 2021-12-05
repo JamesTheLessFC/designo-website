@@ -7,7 +7,7 @@ import { useAddMessageMutation } from "../services/messages";
 import styles from "../styles/page.module.scss";
 
 export default function ContactPage() {
-  const [addMessage, { isLoading, isSuccess, isError }] =
+  const [addMessage, { isLoading, isSuccess, isError, data }] =
     useAddMessageMutation();
 
   return (
@@ -16,7 +16,9 @@ export default function ContactPage() {
       <ContactForm addMessage={addMessage} />
       <LocationLinks />
       <Footer page="contact" />
-      {(isSuccess || isError) && <ContactModal success={isSuccess} />}
+      {(isSuccess || isError) && (
+        <ContactModal success={isSuccess} data={data} />
+      )}
     </div>
   );
 }

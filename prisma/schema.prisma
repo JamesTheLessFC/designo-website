@@ -20,3 +20,12 @@ model Message {
   read Boolean @default(false)
   important Boolean @default(false)
 }
+
+model User {
+  id Int @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  username String @unique @db.VarChar(250)
+  password String @db.VarChar(250)
+  email String @db.VarChar(250)
+  isActive Boolean @default(true)
+}

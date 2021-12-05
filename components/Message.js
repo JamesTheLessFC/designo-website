@@ -40,9 +40,9 @@ export default function Message({ data }) {
         },
       };
       const response = await updateMessage({ id, ...requestBody });
-      if (response.messageId) {
+      if (response.data.messageId) {
         // db was successfully updated
-        dispatch(markMessageAsRead(response.messageId));
+        dispatch(markMessageAsRead(response.data.messageId));
       }
     }
     dispatch(toggleOpen(id));

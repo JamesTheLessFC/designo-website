@@ -1,6 +1,11 @@
 import { prisma } from "../../../db";
+import { getSession } from "next-auth/react";
 
 export default async function handler(req, res) {
+  const session = await getSession({ req });
+  if (!session) {
+    return res.status(401).end();
+  }
   const messageId = Number(req.query.id);
   if (req.method === "PATCH") {
     try {

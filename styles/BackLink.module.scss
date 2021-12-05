@@ -1,0 +1,26 @@
+@import "./variables.scss";
+
+.root {
+  width: 90%;
+  margin: auto;
+  margin-bottom: 2rem;
+  a {
+    @include body;
+    .icon {
+      margin-right: 0.5rem;
+      color: $peach;
+    }
+    &:hover {
+      //border-bottom: 2px solid $dark-gray;
+      .icon {
+        color: $light-peach;
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 1199px) {
+  .root {
+    width: 80%;
+  }
+}

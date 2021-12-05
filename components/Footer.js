@@ -45,7 +45,7 @@ export default function Footer({ page }) {
               </Link>
             </li>
             <li>
-              <Link href="/admin/messages?sortBy=date&page=1">
+              <Link href="/admin">
                 <a>Admin</a>
               </Link>
             </li>
